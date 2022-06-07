@@ -56,7 +56,7 @@ document.getElementById('form').addEventListener('submit', (e) => {
 let booklist = document.querySelector('.list');
 let data = JSON.parse(localStorage.getItem('booklist'));
 
-  let str='';
+let str='';
   if (JSON.parse(localStorage.getItem('booklist')) === null || data.length===0) {
     str=`<li class="list-item">No book stored!</li>`;
   }
@@ -65,8 +65,8 @@ let data = JSON.parse(localStorage.getItem('booklist'));
     str+=`<li class="list-item">
     <p>${obj.title} by ${obj.author}</p>
     <a href="" class="remove-btn" id="remove-book">Remove</a>
-  </li>`
-  }
+    </li>`
+    }
   }
   booklist.innerHTML=str;
   
@@ -77,8 +77,7 @@ let data = JSON.parse(localStorage.getItem('booklist'));
         return item !== selectedbook;
       });
       localStorage.setItem('booklist', JSON.stringify(filteredBooks));
-      let newData=JSON.parse(localStorage.getItem('booklist'));
+      let newData = JSON.parse(localStorage.getItem('booklist'));
       data = newData;
     });
-  }
-  );
+  });
