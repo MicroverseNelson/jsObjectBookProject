@@ -7,22 +7,22 @@ let listMenuLink = document.querySelector('#bookslist');
 let addMenuLink = document.querySelector('#addbooks');
 let contactMenuLink = document.querySelector('#contact');
 
-document.querySelectorAll('.navbar').forEach((link)=>{
-  link.addEventListener('click', ()=>{
-    listMenuLink.addEventListener('click', ()=>{
+document.querySelectorAll('.navbar').forEach((link) => {
+  link.addEventListener('click', () => {
+    listMenuLink.addEventListener('click', () => {
       listSection.style.display='block';
       addSection.style.display='none';
       contactSection.style.display='none';
     });
     
-    addMenuLink.addEventListener('click', ()=>{
+    addMenuLink.addEventListener('click', () => {
         listSection.style.display='none';
         addSection.style.display='block';
         contactSection.style.display='none';
       
     });
     
-    contactMenuLink.addEventListener('click', ()=>{
+    contactMenuLink.addEventListener('click', () => {
       listSection.style.display='none';
       addSection.style.display='none';
       contactSection.style.display='block';
@@ -35,7 +35,7 @@ document.querySelectorAll('.navbar').forEach((link)=>{
 let titleInput = document.querySelector('#title-input');
 let authorInput = document.querySelector('#author-input');
 
-document.getElementById('form').addEventListener('submit', (e)=>{
+document.getElementById('form').addEventListener('submit', (e) => {
   let book = {
     'title': titleInput.value,
     'author': authorInput.value
@@ -70,10 +70,10 @@ let data = JSON.parse(localStorage.getItem('booklist'));
   }
   booklist.innerHTML=str;
   
-  document.querySelectorAll('#remove-book').forEach((button, id)=>{
-    button.addEventListener('click', (e)=>{
+  document.querySelectorAll('#remove-book').forEach((button, id) => {
+    button.addEventListener('click', (e) => {
       let selectedbook=data[id];
-      let filteredBooks=data.filter((item)=>{
+      let filteredBooks=data.filter((item) => {
         return item !== selectedbook;
       });
       localStorage.setItem('booklist', JSON.stringify(filteredBooks));
