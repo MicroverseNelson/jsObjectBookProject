@@ -54,27 +54,26 @@ let booklist = document.querySelector('.list');
 let data = JSON.parse(localStorage.getItem('booklist'));
 
 let str='';
-  if (JSON.parse(localStorage.getItem('booklist')) === null || data.length===0) {
-    str=`<li class="list-item">No book stored!</li>`;
-  }
-  else{
-    for(let obj of data){
+if (JSON.parse(localStorage.getItem('booklist')) === null || data.length===0) {
+  str=`<li class="list-item">No book stored!</li>`;
+}else{
+  for(let obj of data){
     str+=`<li class="list-item">
     <p>${obj.title} by ${obj.author}</p>
     <a href="" class="remove-btn" id="remove-book">Remove</a>
     </li>`
-    }
   }
-  booklist.innerHTML=str;
+}
+booklist.innerHTML=str;
   
-  document.querySelectorAll('#remove-book').forEach((button, id) => {
-    button.addEventListener('click', (e) => {
-      let selectedbook=data[id];
-      let filteredBooks=data.filter((item) => {
-        return item !== selectedbook;
-      });
-      localStorage.setItem('booklist', JSON.stringify(filteredBooks));
-      let newData = JSON.parse(localStorage.getItem('booklist'));
-      data = newData;
+document.querySelectorAll('#remove-book').forEach((button, id) => {
+  button.addEventListener('click', (e) => {
+    let selectedbook=data[id];
+    let filteredBooks=data.filter((item) => {
+      return item !== selectedbook;
     });
+    localStorage.setItem('booklist', JSON.stringify(filteredBooks));
+    let newData = JSON.parse(localStorage.getItem('booklist'));
+      data = newData;
   });
+});
