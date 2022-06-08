@@ -1,77 +1,74 @@
-let listSection = document.querySelector('.booklist');
-let addSection = document.querySelector('.addnew');
-let contactSection = document.querySelector('.contacts');
-let listMenuLink = document.querySelector('#bookslist');
-let addMenuLink = document.querySelector('#addbooks');
-let contactMenuLink = document.querySelector('#contact');
+const listSection = document.querySelector('.booklist');
+const addSection = document.querySelector('.addnew');
+const contactSection = document.querySelector('.contacts');
+const listMenuLink = document.querySelector('#bookslist');
+const addMenuLink = document.querySelector('#addbooks');
+const contactMenuLink = document.querySelector('#contact');
 
 document.querySelectorAll('.navbar').forEach((link) => {
   link.addEventListener('click', () => {
     listMenuLink.addEventListener('click', () => {
-      listSection.style.display= 'block';
-      addSection.style.display='none';
-      contactSection.style.display= 'none';
+      listSection.style.display = 'block';
+      addSection.style.display = 'none';
+      contactSection.style.display = 'none';
     });
 
     addMenuLink.addEventListener('click', () => {
-        listSection.style.display= 'none';
-        addSection.style.display= 'block';
-        contactSection.style.display= 'none';
+      listSection.style.display = 'none';
+      addSection.style.display = 'block';
+      contactSection.style.display = 'none';
     });
 
     contactMenuLink.addEventListener('click', () => {
-      listSection.style.display= 'none';
-      addSection.style.display= 'none';
-      contactSection.style.display= 'block';
+      listSection.style.display = 'none';
+      addSection.style.display = 'none';
+      contactSection.style.display = 'block';
     });
-});
+  });
 });
 
 // storage
 
-let titleInput = document.querySelector('#title-input');
-let authorInput = document.querySelector('#author-input');
+const titleInput = document.querySelector('#title-input');
+const authorInput = document.querySelector('#author-input');
 
-document.getElementById('form').addEventListener('submit', (e) => {
-  let book = {
-    'title': titleInput.value,
-    'author': authorInput.value
+document.getElementById('form').addEventListener('submit', () => {
+  const book = {
+    title: titleInput.value,
+    author: authorInput.value,
   };
-
-  let books = [];
+  const books = [];
   if (JSON.parse(localStorage.getItem('booklist')) === null) {
     books.push(book);
     localStorage.setItem('booklist', JSON.stringify(books));
-  } 
-  else {
-    let newbooks = JSON.parse(localStorage.getItem('booklist'));
+  } else {
+    const newbooks = JSON.parse(localStorage.getItem('booklist'));
     newbooks.push(book);
     localStorage.setItem('booklist', JSON.stringify(newbooks));
   }
 });
 
-let booklist = document.querySelector('.list');
+const booklist = document.querySelector('.list');
 let data = JSON.parse(localStorage.getItem('booklist'));
 
 let str = '';
 if (JSON.parse(localStorage.getItem('booklist')) === null || data.length === 0) {
-  str= `<li class="list-item">No book stored!</li>`;
-}else{
-  for(let obj of data){
-    str+=`<li class="list-item">
+  str = '<li class="list-item">No book stored!</li>';
+} else {
+  for (const obj of data) {
+    str += `<li class='list-item'>
     <p>${obj.title} by ${obj.author}</p>
     <a href="" class="remove-btn" id="remove-book">Remove</a>
-    </li>`
+    </li>`;
   }
 }
-booklist.innerHTML=str;
-  
+booklist.innerHTML = str;
 document.querySelectorAll('#remove-book').forEach((button, id) => {
   button.addEventListener('click', () => {
-    let filteredBooks = data.filter((item) => {
+    const selectedbook = data[id];
+    const filteredBooks = data.filter((item) => {
       return item !== selectedbook;
     });
-    let selectedbook = data[id];
     localStorage.setItem('booklist', JSON.stringify(filteredBooks));
     const newData = JSON.parse(localStorage.getItem('booklist'));
     data = newData;
