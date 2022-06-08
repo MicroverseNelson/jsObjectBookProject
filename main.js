@@ -67,11 +67,11 @@ if (JSON.parse(localStorage.getItem('booklist')) === null || data.length === 0) 
 booklist.innerHTML=str;
   
 document.querySelectorAll('#remove-book').forEach((button, id) => {
-  button.addEventListener('click', (e) => {
-    let selectedbook=data[id];
-    let filteredBooks=data.filter((item) => {
+  button.addEventListener('click', () => {
+    let filteredBooks = data.filter((item) => {
       return item !== selectedbook;
     });
+    let selectedbook = data[id];
     localStorage.setItem('booklist', JSON.stringify(filteredBooks));
     const newData = JSON.parse(localStorage.getItem('booklist'));
     data = newData;
