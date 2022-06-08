@@ -53,9 +53,9 @@ document.getElementById('form').addEventListener('submit', (e) => {
 let booklist = document.querySelector('.list');
 let data = JSON.parse(localStorage.getItem('booklist'));
 
-let str='';
-if (JSON.parse(localStorage.getItem('booklist')) === null || data.length===0) {
-  str=`<li class="list-item">No book stored!</li>`;
+let str = '';
+if (JSON.parse(localStorage.getItem('booklist')) === null || data.length === 0) {
+  str= `<li class="list-item">No book stored!</li>`;
 }else{
   for(let obj of data){
     str+=`<li class="list-item">
@@ -73,7 +73,7 @@ document.querySelectorAll('#remove-book').forEach((button, id) => {
       return item !== selectedbook;
     });
     localStorage.setItem('booklist', JSON.stringify(filteredBooks));
-    let newData = JSON.parse(localStorage.getItem('booklist'));
-      data = newData;
+    const newData = JSON.parse(localStorage.getItem('booklist'));
+    data = newData;
   });
 });
