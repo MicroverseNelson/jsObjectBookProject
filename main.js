@@ -2,9 +2,9 @@ let books = [];
 
 // retrieve saved books
 function retrieve() {
-  const data = JSON.parse(localStorage.getItem('aboutBook'));
+  const data = JSON.parse(localStorage.getItem('myBooks'));
   if (data) {
-    books = JSON.parse(localStorage.getItem('aboutBook'));
+    books = JSON.parse(localStorage.getItem('myBooks'));
   }
 }
 retrieve();
@@ -41,15 +41,15 @@ function removeBook(item) {
   // Remove book
   books = books.filter((element) => element !== books[item.getAttribute('data-id')]);
   // Update books
-  localStorage.setItem('aboutBook', JSON.stringify(books));
+  localStorage.setItem('myBooks', JSON.stringify(books));
   // Initialize screen
   main.innerHTML = '';
   // Display books
   for (let i = 0; i < books.length; i += 1) {
     show(i);
   }
-  removeBook(item);
 }
+removeBook();
 
 const add = document.querySelector('#add');
 
@@ -61,6 +61,6 @@ add.addEventListener('click', (e) => {
   addBook(t, a);
 
   // update local storage
-  localStorage.setItem('aboutBook', JSON.stringify(books));
+  localStorage.setItem('myBooks', JSON.stringify(books));
   show(books.length - 1);
 });
