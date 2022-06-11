@@ -48,7 +48,7 @@ function removeBook(item) {
   for (let i = 0; i < books.length; i += 1) {
     show(i);
   }
-  removeBook(item)
+  removeBook(item);
 }
 
 const add = document.querySelector('#add');
