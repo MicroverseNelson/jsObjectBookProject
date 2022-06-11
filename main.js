@@ -61,9 +61,5 @@ add.addEventListener('click', (e) => {
 
   // update local storage
   localStorage.setItem('aboutBook', JSON.stringify(books));
-  const title = " ";
-  const author = " ";
-
   show(books.length - 1);
 });
-
